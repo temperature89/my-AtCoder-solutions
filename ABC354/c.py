@@ -51,7 +51,7 @@ for n in range(N - 1, -1, -1):
 survived.sort()
 print(len(survived))
 print(*survived)
-        
+
 
 """
 6
