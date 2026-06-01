@@ -1,7 +1,7 @@
 N, M = map(int, input().split())
 A = list(map(int, input().split()))
 B = list(map(int, input().split()))
-A = sorted(A) 
+A = sorted(A)
 B = sorted(B, reverse=True)
 count = 0
 for a in A:
