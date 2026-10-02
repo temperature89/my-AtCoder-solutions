@@ -1,0 +1,22 @@
+template <class... VARtemplate <class... VARteE..template <class... VARtemplate <class... VARteE.. {template <class... VARtemplate <class... VARteE..lptemplate <class... VARtemplate <class... VARteE..tempT;template <class... VARtemplate <class... VARteE..temp
+                                                                                                      ;
+                                                             &                                                             &           + 1 >= 0) {
+            if (S.substr(i - T.length() + 1, T.length()) == T) {
+                cnt++;
+            }
+        }
+        mul[i] = cnt;
+    }
+    
+    rep(i, Q) {
+        ll L, R;
+        cin >> L >> R;
+    }
+
+    printV(mul);
+    return 0;
+}
+
+/*
+abcdabc
+0011112
