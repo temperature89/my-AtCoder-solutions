@@ -66,8 +66,24 @@ int main() {
     INP2(X, Y);
     DEC(X);
     DEC(Y);
-
-    
-
-    return 0;
+    vector<vector<ll>> G(N, vector<ll>(0)); 
+    rep(i, N) {
+        rep(j, N) {
+            bool skipflag = false;
+            rep(k, N) {
+                if (i == j) { 
+                    skipflag = true;
+                } else if (i == X[k] && j == Y[k]) {
+                    skipflag = true;
+                    cout << i << "," << j << "," << X[k] << "," << Y[k] << endl;
+                }
+            }
+            if (!skipflag) {
+                G[i].PB(j);
+            }
+        }
+    }
+    rep(i, N) {
+        printV(G[i]);
+    }
 }
