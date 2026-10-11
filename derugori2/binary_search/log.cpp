@@ -52,7 +52,7 @@ void dprint(VARTYPE... a) {
 }
 
 bool is_ok(ll k, ll n) {
-    return k * (k + 1) / 2;
+    return k * (k + 1) / 2 <= n + 1;
 }
 
 int main() {
@@ -60,12 +60,29 @@ int main() {
     cin.tie(nullptr);
     ll n;
     cin >> n;
-    vector<ll> A;
-    rep(i, n) {
-        A.PB(i + 1);
+    // vector<ll> A;
+    // rep(i, n) {
+    //     A.PB(i + 1);
+    // }
+    // A.PB(n + 1);
+    ll left = 1;
+    ll right = 2e9;
+    while (right - left > 1) {
+        ll mid = (left + right) / 2;
+        // cout << left << "," << mid << "," << right << endl;
+        if (is_ok(mid, n)) {
+            left = mid;
+        } else {
+            right = mid;
+        }
     }
-    A.PB(n + 1);
-    
-
+    // cout << left << endl;
+    // cout << left * (left + 1) / 2;
+    cout << n + 1 - left << endl;;
     return 0;
 }
+
+/*
+1 2 3 4 5 - 12 13 14 - 86 87 88
+      *
+*/

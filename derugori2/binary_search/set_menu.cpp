@@ -54,7 +54,7 @@ void dprint(VARTYPE... a) {
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    int N, M, P;
+    ll N, M, P;
     cin >> N >> M >> P;
     vector<ll> A(N);
     vector<ll> B(M);
@@ -68,8 +68,45 @@ int main() {
         anko += B[i];
         s[i] = anko;
     }
+    // printV(s);
+    LL ans = 0;
     rep(i, N) {
-        lower_bound(all(B), P);
+        ll left = -1;
+        ll right = M;
+        while (right - left > 1) {
+            ll mid = (right + left) / 2;
+            // cout << left << "," << mid << "," << right << endl;
+            if (B[mid] + A[i] > P) {
+                right = mid;
+            } else {
+                left = mid;
+            }
+        }
+        // cout << s[left]
+        // cout << left << endl;
+        if (left < 0) ans += P * M ;
+        else ans += (LL)s[left] + ((LL)A[i] * (left + 1)) + (LL)P * (M - right);
     }
+    cout << (ll)ans << endl;
+
     return 0;
 }
+
+/*
+2 5 7
+3 5
+1 2 3   4  5
+4 5 6 | 7  8
+1 3 6 |10 15 
+
+2 2 7
+3 5
+1 6
+
+4 9
+6 11
+
+2 2 10
+2 3
+10 10
+*/
