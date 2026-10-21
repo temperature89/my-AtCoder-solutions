@@ -54,6 +54,32 @@ void dprint(VARTYPE... a) {
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    
+    ll N, W;
+    cin >> N >> W;
+    vector<vector<ll>> dp(N, vector<ll>(W+1,0));
+    ll w, v;
+    cin >> w >> v;
+    rep(j, W+1) {
+        if (j < w) continue;
+        dp[0][j] = v;
+    }
+    rep2(i, 1, N) {
+        cin >> w >> v;
+        rep(j, W+1) {
+            if (j < w) {
+                dp[i][j] = dp[i - 1][j];
+            } else {
+                dp[i][j] = max(dp[i - 1][j], dp[i - 1][j - w] + v);
+            }
+        }
+    }
+    // rep(i, N) {
+    //     printV(dp[i]);
+    // }
+    cout << dp[N-1][W];
     return 0;
 }
+/*
+n行w列のdp
+dp[i][j] = 品物i~jまでの範囲で好きに選んで重さをj以下とした時の価値の最大値
+*/
