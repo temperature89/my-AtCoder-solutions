@@ -28,8 +28,9 @@ using LL2 = pair<LL, LL>;
     rep(zzz, X.size()) cin >> X[zzz] >> Y[zzz] >> Z[zzz] >> W[zzz]
 #define DEC(X) rep(zzz, X.size()) X[zzz]--
 
-const ll INF = 2e18;  // INF+INFがオーバフローしない程度の大きい値
-void answer(bool res) {
+const ll INF = 2e18; // INF+INFがオーバフローしない程度の大きい値
+void answer(bool res)
+{
     if (res)
         cout << "Yes\n";
     else
@@ -37,46 +38,55 @@ void answer(bool res) {
 }
 
 template <typename T>
-void printV(T A) {
-    for (auto a : A) {
+void printV(T A)
+{
+    for (auto a : A)
+    {
         cout << a << " ";
     }
     cout << endl;
 }
 
-#define DEBUG true  // DEBUG=trueのときデバッグ表示ON
+#define DEBUG true // DEBUG=trueのときデバッグ表示ON
 // #define DEBUG false
 template <class... VARTYPE>
-void dprint(VARTYPE... a) {
-    if (DEBUG) printf(a...);
+void dprint(VARTYPE... a)
+{
+    if (DEBUG)
+        printf(a...);
 }
 
-struct Edge {
+struct Edge
+{
     ll to;
     ll weight;
 };
 
-int main() {
+int main()
+{
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     ll N, M, S, T;
-    cin >> N >> M >> S >> T; 
-    S--; T--;
+    cin >> N >> M >> S >> T;
+    S--;
+    T--;
     vector<vector<Edge>> graph(N);
     vector<ll> A(M), B(M);
     vector<ll> anko(N, INF);
-    INP2(A,B);
+    INP2(A, B);
     DEC(A);
     DEC(B);
     // 番号が最小の隣接した惑星の番号
-    rep(i,M) {
+    rep(i, M)
+    {
         anko[A[i]] = min(anko[A[i]], B[i]);
     }
 
     // グラフ作成
-    rep(i,M) {
+    rep(i, M)
+    {
         ll w = (anko[A[i]] == B[i] ? 0 : 1);
-        graph[A[i]].PB({B[i],w});
+        graph[A[i]].PB({B[i], w});
     }
 
     vector<ll> dist(N, INF);
@@ -84,23 +94,30 @@ int main() {
     priority_queue<pair<ll, ll>, vector<pair<ll, ll>>, greater<pair<ll, ll>>> pq;
     dist[S] = 0;
     pq.push({0, S});
-    while (!pq.empty()) {
-        auto [d,u] = pq.top();
+    while (!pq.empty())
+    {
+        auto [d, u] = pq.top();
         pq.pop();
-        if (d > dist[u]) continue;
-        for (const auto& edge: graph[u]) {
+        if (d > dist[u])
+            continue;
+        for (const auto &edge : graph[u])
+        {
             ll v = edge.to;
             ll next_cost = d + edge.weight;
 
-            if (next_cost < dist[v]) {
+            if (next_cost < dist[v])
+            {
                 dist[v] = next_cost;
                 pq.push({dist[v], v});
             }
         }
     }
-    if (dist[T] == INF) {
+    if (dist[T] == INF)
+    {
         cout << -1 << endl;
-    } else {
+    }
+    else
+    {
         cout << dist[T] << endl;
     }
 }

@@ -51,6 +51,7 @@ void dprint(VARTYPE... a) {
     if (DEBUG) printf(a...);
 }
 
+// 辺
 struct Edge {
     ll to;
     ll weight;
@@ -59,19 +60,24 @@ struct Edge {
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
+    // ノードの数、辺の数
     ll N, M;
     cin >> N >> M;
     vector<vector<Edge>> graph(N);
+
+    // グラフ作成
     rep(i,M) {
         ll u, v, w;
         cin >> u >> v >> w;
         u--; v--;
         graph[u].PB({v,w});
     }
-
+    
     int start = 0;
     cin >> start;
     start--;
+
+    // 辺の重み
     vector<ll> dist(N, INF);
 
     priority_queue<pair<ll, ll>, vector<pair<ll, ll>>, greater<pair<ll, ll>>> pq;
