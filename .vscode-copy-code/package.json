@@ -1,0 +1,30 @@
+{
+  "name": "copy-active-editor-code",
+  "displayName": "Copy Active Editor Code",
+  "description": "Copies the active editor's complete contents.",
+  "version": "0.0.1",
+  "publisher": "local",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": ["Other"],
+  "activationEvents": [],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "copyActiveEditorCode.copy",
+        "title": "Copy Entire File",
+        "icon": "$(copy)"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "copyActiveEditorCode.copy",
+          "group": "navigation"
+        }
+      ]
+    }
+  }
+}
