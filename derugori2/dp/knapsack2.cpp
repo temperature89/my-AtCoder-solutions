@@ -63,8 +63,9 @@ int main() {
     rep(i, N) {
         M += v[i];
     }
-    vector<vector<ll>> dp(N+1, vector<ll>(M+1,INF));
+    vector<vector<ll>> dp(N, vector<ll>(M+1,INF));
     dp[0][0] = 0;
+
     rep(i, N) {
         rep(j, M+1) {
             if (j < v[i]) {
@@ -75,9 +76,9 @@ int main() {
             }
         }
     }
-    // rep(i, N) {
-    //     printV(dp[i]);
-    // }
+    rep(i, N) {
+        printV(dp[i]);
+    }
     repR(j, M+1) {
         if (dp[N][j] <= W) {
             cout <<j;
