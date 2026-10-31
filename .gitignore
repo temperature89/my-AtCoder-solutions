@@ -9,3 +9,5 @@
 
 # --- 必要に応じて残したい個別ファイルや例外があれば下に書く ---
 kyopro_educational_90
+# Scraps local notes
+.scraps/
