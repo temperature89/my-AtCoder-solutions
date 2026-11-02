@@ -65,7 +65,7 @@ int main() {
     vector<ll> m(N+1, 0);
     ll s = 0;
     rep(i,N) {
-        m[i] = s;
+        m[i+1] = s;
         s += P[i];
     }
     m[N] = s;
