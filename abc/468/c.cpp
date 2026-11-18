@@ -44,25 +44,70 @@ void printV(T A) {
     cout << endl;
 }
 
-#define DEBUG true  // DEBUG=trueのときデバッグ表示ON
-// #define DEBUG false
-template <class... VARTYPE>
-void dprint(VARTYPE... a) {
-    if (DEBUG) printf(a...);
+// pairの出力用 (vectorの中にpairが入っている場合などに便利)
+template <typename T, typename U>
+ostream& operator<<(ostream& os, const pair<T, U>& p) {
+    os << "(" << p.first << ", " << p.second << ")";
+    return os;
+}
+
+// vectorの出力用
+template <typename T>
+ostream& operator<<(ostream& os, const vector<T>& v) {
+    os << "[";
+    for (int i = 0; i < (int)v.size(); i++) {
+        os << v[i] << (i == v.size() - 1 ? "" : " ");
+    }
+    os << "]";
+    return os;
+}
+
+// #define DEBUG true  // DEBUG=trueのときデバッグ表示ON
+#define DEBUG false
+template <typename... Args>
+void dprint(Args... args) {
+    if (!DEBUG) return; // デバッグOFF時は何もしない
+
+    if constexpr (sizeof...(args) > 0) {
+        int i = 0;
+        int size = sizeof...(args);
+        // 最後の要素以外は直後に "," を出力する
+        ((cout << args << (++i < size ? "," : "")), ...);
+    }
+    cout << endl; // 最後に改行
 }
 
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
+    
     ll N;
     cin >> N;
     vector<ll> P(N);
     vector<ll> Q(N);
     INP(P);
     INP(Q);
-    ll ans;
-    rep(i,N) {
-        
+    if (P==Q) {
+            cout << 0;
+            exit(0);
     }
+    rep(i,N) {
+        if(P[i] < Q[i]) break;
+        else if(P[i] > Q[i]) {
+            cout << 0;
+            exit(0);
+        }
+    }
+
+    ll cnt = 0;
+    next_permutation(all(P));
+    while (P != Q)
+    {
+        dprint(P);
+        cnt++;
+        next_permutation(all(P));
+    }
+    cout << cnt;
+    
     return 0;
 }

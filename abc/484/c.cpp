@@ -44,26 +44,8 @@ void printV(T A) {
     cout << endl;
 }
 
-// pairの出力用 (vectorの中にpairが入っている場合などに便利)
-template <typename T, typename U>
-ostream& operator<<(ostream& os, const pair<T, U>& p) {
-    os << "(" << p.first << ", " << p.second << ")";
-    return os;
-}
-
-// vectorの出力用
-template <typename T>
-ostream& operator<<(ostream& os, const vector<T>& v) {
-    os << "[";
-    for (int i = 0; i < (int)v.size(); i++) {
-        os << v[i] << (i == v.size() - 1 ? "" : " "); // 要素間はスペース区切り
-    }
-    os << "]";
-    return os;
-}
-
-// #define DEBUG true  // DEBUG=trueのときデバッグ表示ON
-#define DEBUG false
+#define DEBUG true  // DEBUG=trueのときデバッグ表示ON
+// #define DEBUG false
 template <typename... Args>
 void dprint(Args... args) {
     if (!DEBUG) return; // デバッグOFF時は何もしない
